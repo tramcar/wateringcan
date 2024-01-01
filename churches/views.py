@@ -13,3 +13,8 @@ def index(request):
 def detail(request, page_id):
     page = get_object_or_404(Page, pk=page_id)
     return render(request, "churches/detail.html", {"page": page})
+
+
+def detail_slug(request, page_slug):
+    page = get_object_or_404(Page, slug=page_slug)
+    return render(request, "churches/detail.html", {"page": page})
