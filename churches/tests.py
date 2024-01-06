@@ -7,7 +7,7 @@ from .models import Page
 
 
 class PageModelTest(TestCase):
-    def test_slug_has_to_be_unique(self):
+    def test_slug_cannot_be_non_unique(self):
         page1 = Page(title="title", content="content", slug="title")
         page2 = Page(title="title", content="content", slug="title")
         page1.save()
