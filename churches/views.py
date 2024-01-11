@@ -6,7 +6,7 @@ from .models import Page
 
 
 def index(request):
-    page = get_object_or_404(Page, pk=1)
+    page = get_object_or_404(Page, order=0)
     # TODO: Sanitize markdown
     content_md = markdown.markdown(page.content)
     return render(request, "churches/index.html", {"page": page, "content_md": content_md})
