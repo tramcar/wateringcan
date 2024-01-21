@@ -1,7 +1,11 @@
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+
 
 import markdown
 
+from .forms import ContactUsForm
 from .models import Page
 
 
@@ -24,3 +28,23 @@ def detail_slug(request, page_slug):
     # TODO: Sanitize markdown
     content_md = markdown.markdown(page.content)
     return render(request, "churches/detail.html", {"page": page, "content_md": content_md})
+
+
+def contact_us(request):
+    if request.method == "POST":
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            # TODO: Replace "Watering Can" with the church name
+            subject = "[Watering Can] Site feedback"
+            message = form.cleaned_data["message"]
+            sender = form.cleaned_data["sender"]
+            # TODO: Make recipient address configurable
+            recipients = ["info@example.com"]
+
+            send_mail(subject, message, sender, recipients)
+
+            return HttpResponseRedirect("/")
+    else:
+        form = ContactUsForm()
+
+    return render(request, "churches/contact_us.html", {"form": form})
