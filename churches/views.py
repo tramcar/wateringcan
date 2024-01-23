@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -34,12 +35,10 @@ def contact_us(request):
     if request.method == "POST":
         form = ContactUsForm(request.POST)
         if form.is_valid():
-            # TODO: Replace "Watering Can" with the church name
-            subject = "[Watering Can] Site feedback"
+            subject = "[%s] Site feedback" % (settings.CHURCH_NAME)
             message = form.cleaned_data["message"]
             sender = form.cleaned_data["sender"]
-            # TODO: Make recipient address configurable
-            recipients = ["info@example.com"]
+            recipients = [settings.CHURCH_EMAIL_ADDRESS]
 
             send_mail(subject, message, sender, recipients)
 

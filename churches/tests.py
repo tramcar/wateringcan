@@ -1,4 +1,3 @@
-import pprint
 from django.db.utils import IntegrityError
 from django.test import TestCase
 from django.urls import reverse
@@ -10,14 +9,6 @@ class PageModelTest(TestCase):
     def test_slug_cannot_be_non_unique(self):
         page1 = Page(title="title", content="content", slug="title", order=0)
         page2 = Page(title="title", content="content", slug="title", order=10)
-        page1.save()
-        self.assertRaises(IntegrityError, page2.save)
-        self.assertIsNotNone(page1.id)
-        self.assertIsNone(page2.id)
-
-    def test_slug_cannot_be_non_unique(self):
-        page1 = Page(title="title", content="content", slug="title", order=0)
-        page2 = Page(title="title", content="content", slug="title", order=0)
         page1.save()
         self.assertRaises(IntegrityError, page2.save)
         self.assertIsNotNone(page1.id)
@@ -44,6 +35,7 @@ class PageModelTest(TestCase):
         page.title = "updated title"
         page.save()
         self.assertNotEqual(updated_at, page.updated_at)
+
 
 class PageViewTests(TestCase):
     def test_get_page_by_slug(self):
