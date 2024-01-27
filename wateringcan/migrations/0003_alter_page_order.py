@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('churches', '0002_page_order'),
+        ('wateringcan', '0002_page_order'),
     ]
 
     operations = [

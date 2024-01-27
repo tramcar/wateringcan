@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'churches.apps.ChurchesConfig',
+    'wateringcan.apps.WateringCanConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'wateringcan.urls'
+ROOT_URLCONF = 'tramcar.urls'
 
 TEMPLATES = [
     {
@@ -63,13 +63,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'churches.context_processors.build_menu',
+                'wateringcan.context_processors.build_menu',
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'wateringcan.wsgi.application'
+WSGI_APPLICATION = 'tramcar.wsgi.application'
 
 
 # Database
