@@ -5,6 +5,6 @@
 {% block content %}
 <div class="content">
   <h2>{{ page.title }}</h2>
-  {{ content_md|safe }}
+  {{ page.content_html|safe }}
 </div>
 {% endblock %}
